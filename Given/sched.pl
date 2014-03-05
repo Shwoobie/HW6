@@ -47,3 +47,9 @@ split_in_half(Xs, Ys, Zs) :-
     length(Xs, Len),
     Half is Len // 2,    % integer division, rounding down
     split_at(Xs, Half, Ys, Zs).
+
+ %split_at(Xs, N, Ys, Zs) divides Xs into a list Ys of length N
+% and a list Zs containing the part after the first N.
+split_at(Xs, N, Ys, Zs) :-
+    length(Ys, N),
+    append(Ys, Zs, Xs).
