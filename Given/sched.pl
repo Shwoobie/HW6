@@ -37,7 +37,7 @@ merge(Xs, [], Xs).
 merge(Xs, Ys, S) :- %compare lists
     Xs = [X|Xs0],
     Ys = [Y|Ys0],
-    (X @=< Y ->
+    (X @>= Y ->
         S = [X|S0],
         merge(Xs0, Ys, S0);
         S = [Y|S0],
