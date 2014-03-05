@@ -18,7 +18,7 @@ c_notpl(N) :-
 %% list of those teaching
 c_inst60(L) :-
 
-		 course(60,_,L), mergesort(L,L).
+		 course(60,_,L), mergesort(L,X).
 
 
 mergesort(Xs, S) :-
@@ -37,7 +37,7 @@ merge(Xs, [], Xs).
 merge(Xs, Ys, S) :- %compare lists
     Xs = [X|Xs0],
     Ys = [Y|Ys0],
-    (X @=< Y ->
+    (X @=> Y ->
         S = [X|S0],
         merge(Xs0, Ys, S0);
         S = [Y|S0],
