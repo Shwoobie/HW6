@@ -23,7 +23,7 @@ c_inst60(L) :-
 
 mergesort(Xs, S) :-
     length(Xs, Len),
-    (Len =< 2 ->
+    (Len >= 2 ->
         S = Xs;
         split_in_half(Xs, Ys, Zs),
         mergesort(Ys, SY),
