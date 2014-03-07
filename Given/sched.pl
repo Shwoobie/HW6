@@ -68,12 +68,9 @@ myfor(L,U,Result) :-
         Result = [L | Res1].
 myfor(L,U,[]) :-
         L>U.
-mylast([H],H).
-mylast([_|T],Z) :- %%%% note: gprolog complains about H being singleton
-        mylast(T,Z).
 
 crossmyfor(0,H,[]).
 %crossmyfor(R,H,Z) :-
 %         list(R),R = [Head|Tail], myfor(Head,H,[X|T]), distribute(R, H, W), crossmyfor(T,H,Q), append(W, Q, Z).
 crossmyfor(R,H,Z) :-
-        myfor(1,R,X), myfor(1,H,Y),  mylast(X,V), K is V-1, distribute(V, Y, W), crossmyfor(K,H,Q), append(Q,W,Z).
+        myfor(1,R,X), myfor(1,H,Y),  last(X,V), K is V-1, distribute(V, Y, W), crossmyfor(K,H,Q), append(Q,W,Z).
