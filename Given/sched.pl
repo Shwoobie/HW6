@@ -76,4 +76,4 @@ crossmyfor(0,H,[]).
 %crossmyfor(R,H,Z) :-
 %         list(R),R = [Head|Tail], myfor(Head,H,[X|T]), distribute(R, H, W), crossmyfor(T,H,Q), append(W, Q, Z).
 crossmyfor(R,H,Z) :-
-        myfor(1,R,X), myfor(1,H,Y), X=[Head|_], distribute(Head, Y, W),  mylast(X,V), K is V-1, crossmyfor(K,H,Q), append(Q,W,Z).
+        myfor(1,R,X), myfor(1,H,Y),  mylast(X,V), K is V-1, distribute(K, Y, W), crossmyfor(K,H,Q), append(Q,W,Z).
