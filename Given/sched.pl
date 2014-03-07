@@ -84,8 +84,8 @@ participants([],[]).
 
 participants(C,Z) :-
         C = [H|T], H = [Name|[MeetingList|_]], makelist(MeetingList, Mlist),
-         distribute2([Name],Mlist,G), participants(T,U), append(G,U,ListSeparate), 
-         join_names(ListSeparate, Joined_list), sort(Joined_list, Z).
+         distribute2([Name],Mlist,G), participants(T,U), append(G,U,Z). 
+         %join_names(ListSeparate, Joined_list), sort(Joined_list, Z).
 
 distribute2(_,[],[]).
 
