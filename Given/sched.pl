@@ -87,7 +87,7 @@ participants(C,Z) :-
 distribute2(_,[],[]).
 
 distribute2(W,[H|T],Y) :-
-        append([H],[W],G), distribute(W,T,V), append([G],V,Y).
+        append([H],[W],G), distribute2(W,T,V), append([G],V,Y).
 
 makelist([],[]).
 makelist([H|T],Z) :-
