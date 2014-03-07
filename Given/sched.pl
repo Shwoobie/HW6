@@ -108,5 +108,5 @@ mymember(A,[X|[N1|_]],[[X|[N2|_]]|T],Z) :-
         append(N1, N2, N), mymember(A,[X|[N1|_]],T,Y), append(X,[N],V),
         append(V,Y,U), sort(U, Z).
 mymember(A, [X|N1],[H|T],Z) :-
-        A \= 1 -> mymember([X|N1],T,G), append([X|N1],H, U), append(U, G, Z) ;
-        mymember([X|N1],T,G), append(H, G, Z).
+        (A \= 1 -> mymember([X|N1],T,G), append([X|N1],H, U), append(U, G, Z) ;
+        mymember([X|N1],T,G), append(H, G, Z)).
