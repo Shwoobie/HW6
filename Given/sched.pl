@@ -92,7 +92,7 @@ distribute2(_,[],[]).
 distribute2(W,[H|T],Y) :-
         append([H],[W],G), distribute2(W,T,V), append([G],V,Y).
 
-join_names([],[])
+join_names([],[]).
 join_names([H|T],Z) :-
         mymember(H,T,X), join_names(T,Y), append(X,Y,Z).
 
