@@ -59,3 +59,12 @@ distribute(_,[],[]).
 distribute(W,[H|T],Y) :-
 	append([W],[H],G), distribute(W,T,V), append([G],V,Y).
 
+/* myfor(L,U,Result)
+*/
+myfor(L,U,Result) :-
+        L =< U,
+        L1 is L+1,
+        myfor(L1,U,Res1),
+        Result = [L | Res1].
+myfor(L,U,[]) :-
+        L>U.
