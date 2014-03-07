@@ -68,3 +68,9 @@ myfor(L,U,Result) :-
         Result = [L | Res1].
 myfor(L,U,[]) :-
         L>U.
+
+crossmyfor([],_,[]).
+crossmyfor([R|T],H,Z) :-
+        list(H), distribute(R, H, W), crossmyfor(T,H,Q), append(W, Q, Z).
+crossmyfor(R,H,Z) :-
+        myfor(1,R,[X|T]), myfor(1,H,Y), distribute(X, Y, W), crossmyfor(T,H,Q), append(W,Q,Z).
