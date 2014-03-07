@@ -79,3 +79,22 @@ getallmeetings([],[]).
 
 getallmeetings(C,Z) :-
         C = [H|T], H = [_|[W|_]], getallmeetings(T, U), append(W, U, V), sort(V, Z).
+
+participants(C,Z) :-
+        C = [H|T], H = [Name|[MeetingList|_]], makelist(MeetingList, Mlist),
+         distribute([Name],Mlist,G), participants(T,U).
+
+distribute2(_,[],[]).
+
+distribute2(W,[H|T],Y) :-
+        append([H],[W],G), distribute(W,T,V), append([G],V,Y).
+
+makelist([],[]).
+makelist([H|T],Z) :-
+        makelist(T,U), append([H],U,Z).
+
+
+mymember(X,[],0).
+
+mymember(X,[X|T],Z) :- mymember(X,T,Y), Z is Y.
+mymember(X,[_|T],Z) :- mymember(X,T,Z).
