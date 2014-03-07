@@ -84,19 +84,25 @@ participants([],[]).
 
 participants(C,Z) :-
         C = [H|T], H = [Name|[MeetingList|_]], makelist(MeetingList, Mlist),
-         distribute2([Name],Mlist,G), participants(T,U), append(G,U,Z).
+         distribute2([Name],Mlist,G), participants(T,U), append(G,U,ListSeparate), 
+         join_names(ListSeparate, Joined_list), sort(Joined_list, Z).
 
 distribute2(_,[],[]).
 
 distribute2(W,[H|T],Y) :-
         append([H],[W],G), distribute2(W,T,V), append([G],V,Y).
 
+join_names([H|T],Z) :-
+        mymember(H,T,X), join_names(T,Y), append(X,Y,Z)
+
+
 makelist([],[]).
 makelist([H|T],Z) :-
         makelist(T,U), append([H],U,Z).
 
 
-mymember(X,[],0).
-
-mymember(X,[X|T],Z) :- mymember(X,T,Y), Z is Y.
-mymember(X,[_|T],Z) :- mymember(X,T,Z).
+mymember([[X|N1]|_],[],[]).
+mymember([[X|N1]|_],[[X|N2]|T],Z) :-
+        append(N1, N2, N), !, mymember(X,T,Y), append(N,Y,U), sort(U, Z).
+mymember([[X|N1]|_],[_|T],Z) :-
+        mymember(X,T,Z).
