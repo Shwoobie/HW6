@@ -58,3 +58,4 @@ distribute(_,[],[]).
 
 distribute(W,[H|T],Y) :-
 	append([W],[H],G), distribute(W,T,V), append([G],V,Y).
+
