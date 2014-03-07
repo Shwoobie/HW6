@@ -94,7 +94,7 @@ distribute2(W,[H|T],Y) :-
 
 join_names([],[]).
 join_names([H|T],Z) :-
-        mymember(H,T,X), join_names(T,Y), append(X,Y,Z).
+        mymember(H,T,X), join_names(T,_), append([H|T],X,Z).
 
 
 makelist([],[]).
@@ -104,6 +104,7 @@ makelist([H|T],Z) :-
 
 mymember([_|_],[],[]).
 mymember([X|[N1|_]],[[X|[N2|_]]|T],Z) :-
-        append(N1, N2, N), mymember([X|[N1|_]],T,Y), append(N,Y,U), sort(U, Z).
-mymember([X|N1],[_|T],Z) :-
-        mymember([X|N1],T,Z).
+        append(N1, N2, N), mymember([X|[N1|_]],T,Y), append(X,[N],V),
+        append(V,Y,U), sort(U, Z).
+mymember([X|N1],[H|T],Z) :-
+        mymember([X|N1],T,G) append(H, G, Z).
