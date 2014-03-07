@@ -103,7 +103,7 @@ makelist([H|T],Z) :-
 
 
 mymember([_],[],[]).
-mymember([[X|N1]|_],[[X|N2]|T],Z) :-
+mymember([X|N1],[[X|N2]|T],Z) :-
         append(N1, N2, N), mymember(X,T,Y), append(N,Y,U), sort(U, Z).
-mymember([[X|_]|_],[_|T],Z) :-
+mymember([X|_],[[_]|T],Z) :-
         mymember(X,T,Z).
