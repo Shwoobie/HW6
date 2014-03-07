@@ -75,5 +75,7 @@ crossmyfor(0,H,[]).
 crossmyfor(R,H,Z) :-
         myfor(1,R,X), myfor(1,H,Y),  last(X,V), K is V-1, distribute(V, Y, W), crossmyfor(K,H,Q), append(Q,W,Z).
 
+getallmeetings([],[]).
+
 getallmeetings(C,Z) :-
         C = [H|T], H = [_|Tail], getallmeetings(T, U), append(Tail, U, V), sort(V, Z).
