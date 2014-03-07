@@ -78,4 +78,4 @@ crossmyfor(R,H,Z) :-
 getallmeetings([],[]).
 
 getallmeetings(C,Z) :-
-        C = [H|T], H = [_|Tail], getallmeetings(T, U), append(Tail, U, V), sort(V, Z).
+        C = [H|T], H = [_|[W|_]], getallmeetings(T, U), append(W, U, V), sort(V, Z).
