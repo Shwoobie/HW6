@@ -10,46 +10,51 @@ c_pl(N) :-
 c_notpl(N) :-
 
 		 course(N,_,_), \+(course(N,programming_languages,_)).
+%% list of those teaching
+c_inst60(L) :-
+                 course(60,_,L).
 
-
-
+c_inst20(L) :-
+                 course(20,_,L).
 
 
 %% list of those teaching
-c_inst60(L) :-
+c_inst60_sorted(X) :-
+		 course(60,_,L), sort(L,X).
 
-		 course(60,_,L), mergesort(L,X).
+%% list of those teaching
+c_inst20_sorted(X) :-
+                 course(20,_,L), sort(L,X).
 
+%% list of those teaching
+c_inst_sorted(N,X) :-
+                 course(N,_,L), sort(L,X).
 
-mergesort(Xs, S) :-
-    length(Xs, Len),
-    (Len < 2 ->
-        S = Xs;
-        split_in_half(Xs, Ys, Zs),
-        mergesort(Ys, SY),
-        mergesort(Zs, SZ),
-        merge(SY, SZ, S)
-    ).
+c_single_inst(M) :-
+	course(M,_,L), length(L, X), (X = 1).
 
-% First two cases: merging any list Xs with an empty list yields Xs
-merge([], Xs, Xs).
-merge(Xs, [], Xs).
-merge(Xs, Ys, S) :- %compare lists
-    Xs = [X|Xs0],
-    Ys = [Y|Ys0],
-    (X @>= Y ->
-        S = [X|S0],
-        merge(Xs0, Ys, S0);
-        S = [Y|S0],
-        merge(Xs, Ys0, S0)).
+c_multi_inst(M) :-
+        course(M,_,L), length(L, X), (X > 1).
 
-split_in_half(Xs, Ys, Zs) :-
-    length(Xs, Len),
-    Half is Len // 2,    % integer division, rounding down
-    split_at(Xs, Half, Ys, Zs).
+c_exclusive(I,M) :-
+        course(M,_,L), length(L, X), (X = 1), (L = [H]), (H = I).
 
- %split_at(Xs, N, Ys, Zs) divides Xs into a list Ys of length N
-% and a list Zs containing the part after the first N.
-split_at(Xs, N, Ys, Zs) :-
-    length(Ys, N),
-    append(Ys, Zs, Xs).
+c_12_inst_1or(M) :-
+	 course(M,_,L), length(L, X), (X = 1); 
+	 course(M,_,L), length(L, X), (X = 2).
+
+c_12_inst_2wo(M) :-
+	course(M,_,L), length(L, X), (X = 1).
+
+c_12_inst_2wo(M) :-
+        course(M,_,L), length(L, X), (X = 2).
+
+sortappend(L1, L2, R) :-
+	append(L1, L2, X), sort(X,R).
+
+delete_question("my answer goes here").
+
+distribute(_,[],[]).
+
+distribute(W,[H|T],Y) :-
+	append([W],[H],G), distribute(W,T,V), append([G],V,Y).
