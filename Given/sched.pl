@@ -69,7 +69,7 @@ myfor(L,U,Result) :-
 myfor(L,U,[]) :-
         L>U.
 
-crossmyfor(0,H,[]).
+crossmyfor(0,_,[]).
 %crossmyfor(R,H,Z) :-
 %         list(R),R = [Head|Tail], myfor(Head,H,[X|T]), distribute(R, H, W), crossmyfor(T,H,Q), append(W, Q, Z).
 crossmyfor(R,H,Z) :-
@@ -93,7 +93,7 @@ distribute2(W,[H|T],Y) :-
         append([H],[W],G), distribute2(W,T,V), append([G],V,Y).
 
 join_names([H|T],Z) :-
-        mymember(H,T,X), join_names(T,Y), append(X,Y,Z)
+        mymember(H,T,X), join_names(T,Y), append(X,Y,Z).
 
 
 makelist([],[]).
@@ -101,7 +101,7 @@ makelist([H|T],Z) :-
         makelist(T,U), append([H],U,Z).
 
 
-mymember([[X|_]|_],[],[]).
+mymember([[_],[],[]).
 mymember([[X|N1]|_],[[X|N2]|T],Z) :-
         append(N1, N2, N), !, mymember(X,T,Y), append(N,Y,U), sort(U, Z).
 mymember([[X|_]|_],[_|T],Z) :-
