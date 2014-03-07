@@ -84,7 +84,7 @@ participants([],[]).
 
 participants(C,Z) :-
         C = [H|T], H = [Name|[MeetingList|_]], makelist(MeetingList, Mlist),
-         distribute2([Name],Mlist,G), participants(T,Z).
+         distribute2([Name],Mlist,G), participants(T,U), append(G,U,Z).
 
 distribute2(_,[],[]).
 
