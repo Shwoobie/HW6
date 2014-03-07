@@ -52,7 +52,7 @@ c_12_inst_2wo(M) :-
 sortappend(L1, L2, R) :-
 	append(L1, L2, X), sort(X,R).
 
-delete_question("page 157").
+delete_question("my answer goes here").
 
 distribute(_,[],[]).
 
